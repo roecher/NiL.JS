@@ -13,7 +13,8 @@ namespace NiL.JS.Core
     public enum CodeFragmentType
     {
         Statement,
-        Expression
+        Expression,
+        ExpressionContinuation
     }
 
     internal class Rule
@@ -603,7 +604,7 @@ namespace NiL.JS.Core
                                 while (index + 1 < code.Length && (code[index] != '*' || code[index + 1] != '/'))
                                     index++;
                                 if (index + 1 >= code.Length)
-                                    ExceptionHelper.Throw(new SyntaxError("Unexpected end of source."));
+                                    ExceptionHelper.ThrowSyntaxError(Strings.UnexpectedEndOfSource);
                                 index += 2;
                                 work = true;
                                 break;
